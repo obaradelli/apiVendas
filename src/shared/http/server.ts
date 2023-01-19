@@ -1,6 +1,7 @@
 import cors from 'cors'
 import '@shared/typeorm'
 import 'reflect-metadata'
+import 'express-async-errors'
 import routes from './routes'
 import express, { NextFunction, Request, Response } from 'express'
 

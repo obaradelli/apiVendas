@@ -3,6 +3,7 @@ import '@shared/typeorm'
 import 'reflect-metadata'
 import 'express-async-errors'
 import routes from './routes'
+import { errors } from 'celebrate'
 import express, { NextFunction, Request, Response } from 'express'
 
 import AppError from '@shared/errors/AppError'
@@ -13,6 +14,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use(routes)
+
+app.use(errors())
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError) {

@@ -4,6 +4,12 @@ import { NextFunction, Request, Response } from 'express'
 import authConfig from '../../../config/auth'
 import AppError from '../../../shared/errors/AppError'
 
+interface TokenPayload {
+  iat: number
+  exp: number
+  sub: string
+}
+
 export default function isAuthenticated(
   req: Request,
   res: Response,
@@ -18,7 +24,13 @@ export default function isAuthenticated(
   const [, token] = authHeader.split(' ')
 
   try {
-    const decodeToken = verify(token, authConfig.jwt.secret)
+    const decodedToken = verify(token, authConfig.jwt.secret)
+
+    const { sub } = decodedToken as TokenPayload
+
+    req.user = {
+      id: sub,
+    }
 
     return next()
   } catch {

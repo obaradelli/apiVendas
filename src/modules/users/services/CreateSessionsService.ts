@@ -1,6 +1,6 @@
+import { getCustomRepository } from 'typeorm'
 import { sign } from 'jsonwebtoken'
 import { compare } from 'bcryptjs'
-import { getCustomRepository } from 'typeorm'
 
 import authConfig from '@config/auth'
 import User from '.././typeorm/entities/User'

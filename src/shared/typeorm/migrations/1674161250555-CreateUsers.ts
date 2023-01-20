@@ -1,4 +1,3 @@
-import { type } from 'os'
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
 export class CreateUsers1674161250555 implements MigrationInterface {

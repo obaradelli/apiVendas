@@ -4,7 +4,7 @@ import { compare } from 'bcryptjs'
 
 import authConfig from '@config/auth'
 import User from '.././typeorm/entities/User'
-import AppError from '../../../shared/errors/AppError'
+import AppError from '@shared/errors/AppError'
 import UsersRepository from '../typeorm/repositories/UsersRepository'
 
 interface IRequest {
@@ -32,7 +32,7 @@ class CreateSessionsService {
       throw new AppError('Incorrect email/password combination.', 401)
     }
 
-    const token = sign({}, authConfig.jwt.secret, {
+    const token = await sign({}, authConfig.jwt.secret, {
       subject: user.id,
       expiresIn: authConfig.jwt.expiresIn,
     })

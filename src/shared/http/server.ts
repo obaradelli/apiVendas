@@ -1,8 +1,10 @@
+import 'reflect-metadata'
+import 'express-async-errors'
+
 import express, { NextFunction, Request, Response } from 'express'
+
 import { errors } from 'celebrate'
 import routes from './routes'
-import 'express-async-errors'
-import 'reflect-metadata'
 import cors from 'cors'
 
 import '@shared/typeorm'
@@ -11,12 +13,14 @@ import AppError from '@shared/errors/AppError'
 
 const app = express()
 
-app.use(cors())
 app.use(express.json())
+
 app.use('/files', express.static(uploadConfig.directory))
-app.use(routes)
 
 app.use(errors())
+app.use(cors())
+
+app.use(routes)
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError) {

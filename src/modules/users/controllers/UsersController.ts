@@ -3,11 +3,9 @@ import { Request, Response } from 'express'
 import ListUserService from '../services/ListUserService'
 import CreateUserService from '../services/CreateUserService'
 
-export default class UsersController {
+class UsersController {
   public async index(req: Request, res: Response): Promise<Response> {
     const listUser = new ListUserService()
-
-    console.log(req.user.id)
 
     const users = await listUser.execute()
 
@@ -24,3 +22,5 @@ export default class UsersController {
     return res.json(user)
   }
 }
+
+export default UsersController

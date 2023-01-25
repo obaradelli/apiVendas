@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 
 import ListUserService from '@modules/users/services/ListUserService'
 import CreateUserService from '@modules/users/services/CreateUserService'
+import { instanceToInstance } from 'class-transformer'
 
 class UsersController {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -9,7 +10,7 @@ class UsersController {
 
     const users = await listUser.execute()
 
-    return res.json(users)
+    return res.json(instanceToInstance(users))
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
@@ -19,7 +20,7 @@ class UsersController {
 
     const user = await createUser.execute({ name, email, password })
 
-    return res.json(user)
+    return res.json(instanceToInstance(user))
   }
 }
 

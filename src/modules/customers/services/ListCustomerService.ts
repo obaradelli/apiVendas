@@ -1,7 +1,7 @@
 import { getCustomRepository } from 'typeorm'
 
-import UseCustomer from '.././typeorm/entities/Customer'
-import CustomersRepository from '../typeorm/repositories/CustomersRepository'
+import UseCustomer from '@modules/customers/typeorm/entities/Customer'
+import CustomersRepository from '@modules/customers/typeorm/repositories/CustomersRepository'
 
 class ListCustomerService {
   public async execute(): Promise<UseCustomer[]> {

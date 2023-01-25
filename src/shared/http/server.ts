@@ -4,7 +4,7 @@ import 'express-async-errors'
 import express, { NextFunction, Request, Response } from 'express'
 
 import { errors } from 'celebrate'
-import routes from './routes'
+import routes from '@shared/http/routes'
 import cors from 'cors'
 
 import '@shared/typeorm'

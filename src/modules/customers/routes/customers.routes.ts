@@ -2,7 +2,7 @@ import { celebrate, Joi, Segments } from 'celebrate'
 import isAuthenticated from '@shared/http/middlewares/isAuthenticated'
 import { Router } from 'express'
 
-import CustomersController from '../controllers/CustomersController'
+import CustomersController from '@modules/customers/controllers/CustomersController'
 
 const costumersRouter = Router()
 const customersController = new CustomersController()
